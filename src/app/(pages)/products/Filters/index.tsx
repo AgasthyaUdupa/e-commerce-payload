@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react'
 
 import { Category } from '../../../../payload/payload-types'
@@ -11,15 +12,19 @@ import classes from './index.module.scss'
 
 const Filters = ({ categories }: { categories: Category[] }) => {
   const { categoryFilters, sort, setCategoryFilters, setSort } = useFilter()
+
   const handleCategories = (categoryId: string) => {
     if (categoryFilters.includes(categoryId)) {
       const updatedCategories = categoryFilters.filter(id => id !== categoryId)
+
       setCategoryFilters(updatedCategories)
     } else {
       setCategoryFilters([...categoryFilters, categoryId])
     }
   }
+
   const handleSort = (value: string) => setSort(value)
+
   return (
     <div className={classes.filters}>
       <div>
@@ -27,6 +32,7 @@ const Filters = ({ categories }: { categories: Category[] }) => {
         <div className={classes.categories}>
           {categories.map(category => {
             const isSelected = categoryFilters.includes(category.id)
+
             return (
               <Checkbox
                 key={category.id}
